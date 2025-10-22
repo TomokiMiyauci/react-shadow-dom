@@ -1,0 +1,5 @@
+export const snapshot = {};
+
+snapshot[`Template > ssr > snapshot > default 1`] = `'<template shadowrootmode="open"></template>'`;
+
+snapshot[`Template > ssr > snapshot > with children 1`] = `'<template shadowrootmode="open"><slot></slot></template>'`;
