@@ -1,33 +1,38 @@
 "use client";
 import { createPortal } from "react-dom";
 import { type JSX, type ReactNode, useCallback } from "react";
-import type { TemplateProps } from "./types.ts";
 import { useShadowRoot } from "./hooks.ts";
 
-export interface ShadowRootProps extends TemplateProps {
+export interface ShadowRootProps extends ShadowRootInit {
   children?: ReactNode;
 }
 
-export default function ShadowRoot(
-  props: ShadowRootProps & JSX.IntrinsicElements["template"],
-): JSX.Element {
+export default function ShadowRoot(props: ShadowRootProps): JSX.Element {
   const {
     children,
-    shadowrootmode,
-    shadowrootclonable,
-    shadowrootdelegatesfocus,
-    shadowrootserializable,
+    mode,
+    clonable,
+    delegatesFocus,
+    serializable,
+    slotAssignment,
+    customElementRegistry,
   } = props;
   const [ref, shadowRoot] = useShadowRoot({
-    mode: shadowrootmode,
-    clonable: shadowrootclonable,
-    delegatesFocus: shadowrootdelegatesfocus,
-    serializable: shadowrootserializable,
+    mode,
+    clonable,
+    delegatesFocus,
+    serializable,
+    slotAssignment,
+    customElementRegistry,
   });
-  const callbackRef = useCallback((el: HTMLTemplateElement | null) => {
+  const callbackRef = useCallback((el: HTMLDivElement | null) => {
     if (el) ref.current = el.parentElement;
   }, [ref]);
 
-  if (shadowRoot) return createPortal(children, shadowRoot);
-  return <template ref={callbackRef} {...props} />;
+  return (
+    // TODO(miyauci): Refactor to using Fragment ref
+    <div ref={callbackRef}>
+      {shadowRoot && createPortal(children, shadowRoot)}
+    </div>
+  );
 }

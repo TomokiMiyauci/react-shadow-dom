@@ -13,7 +13,7 @@ describe("Template", () => {
       it("default", async (t) => {
         await assertSnapshot(
           t,
-          renderToStaticMarkup(<Template shadowrootmode="open" />),
+          renderToStaticMarkup(<Template shadowRootMode="open" />),
         );
       });
 
@@ -21,7 +21,23 @@ describe("Template", () => {
         await assertSnapshot(
           t,
           renderToStaticMarkup(
-            <Template shadowrootmode="open">
+            <Template shadowRootMode="open">
+              <slot />
+            </Template>,
+          ),
+        );
+      });
+
+      it("with full props", async (t) => {
+        await assertSnapshot(
+          t,
+          renderToStaticMarkup(
+            <Template
+              shadowRootMode="open"
+              shadowRootClonable
+              shadowRootDelegatesFocus
+              shadowRootSerializable
+            >
               <slot />
             </Template>,
           ),
@@ -42,7 +58,7 @@ describe("Template", () => {
     it("should attach shadow root", () => {
       const result = render(
         <div data-testid="host">
-          <Template shadowrootmode="open">
+          <Template shadowRootMode="open">
             <slot />
           </Template>
         </div>,
@@ -67,7 +83,7 @@ describe("Template", () => {
 
         const fn = spy();
         render(
-          <Template shadowrootmode="open">
+          <Template shadowRootMode="open">
             <button id="test" type="button" onClick={fn}></button>
           </Template>,
           { container },
@@ -86,7 +102,7 @@ describe("Template", () => {
 
     it("should remove shadow dom content on unmount", () => {
       const result = render(
-        <Template shadowrootmode="open">
+        <Template shadowRootMode="open">
           <slot />
         </Template>,
       );
@@ -103,7 +119,7 @@ describe("Template", () => {
 
     it("should rerender", () => {
       const result = render(
-        <Template shadowrootmode="open">
+        <Template shadowRootMode="open">
           <slot />
         </Template>,
       );
@@ -114,7 +130,7 @@ describe("Template", () => {
       expect(host?.childElementCount).toBe(1);
 
       result.rerender(
-        <Template shadowrootmode="open">
+        <Template shadowRootMode="open">
           <slot />
           <slot />
         </Template>,
@@ -123,7 +139,7 @@ describe("Template", () => {
       expect(host?.childElementCount).toBe(2);
     });
 
-    it("should throw error if shadow dom is mismatch", () => {
+    it("should not detect hydration errors", () => {
       const host = document.createElement("div");
       const shadowRoot = host.attachShadow({ mode: "open" });
       shadowRoot.innerHTML = "<div></div>";
@@ -132,17 +148,12 @@ describe("Template", () => {
 
       expect(() => {
         render(
-          <Template shadowrootmode="open">
+          <Template shadowRootMode="open">
             <slot></slot>
           </Template>,
-          {
-            container: host,
-            onUncaughtError: ((e: unknown) => {
-              throw e;
-            }) as never,
-          },
+          { container: host },
         );
-      }).toThrow();
+      }).not.toThrow();
     });
   });
 });
