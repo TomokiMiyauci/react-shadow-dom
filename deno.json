@@ -2,8 +2,10 @@
   "name": "@miyauci/react-dsd",
   "imports": {
     "@std/expect": "jsr:@std/expect@^1.0.17",
-    "@std/testing": "jsr:@std/testing@^1.0.16",
-    "~/": "./"
+    "@std/testing": "jsr:@std/testing@^1.0.16"
+  },
+  "exports": {
+    ".": "./src/mod.ts"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
@@ -16,6 +18,14 @@
     "lib": ["dom", "es2024", "deno.ns"]
   },
   "tasks": {
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "deno test -P=test"
+  },
+  "permissions": {
+    "test": {
+      "read": true,
+      "write": ["./src"],
+      "env": true
+    }
   }
 }
