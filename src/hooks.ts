@@ -1,31 +1,5 @@
 "use client";
-import {
-  type RefObject,
-  useLayoutEffect,
-  useRef,
-  useState,
-  useSyncExternalStore,
-} from "react";
-
-export type RenderMode = "ssr" | "hydrate" | "csr";
-
-function getNoop(): VoidFunction {
-  return noop;
-}
-
-function noop(): void {}
-
-function getSnapshot(): "csr" {
-  return "csr";
-}
-
-function getServerSnapshot(): "hydrate" | "ssr" {
-  return "window" in globalThis ? "hydrate" : "ssr";
-}
-
-export function useRenderMode(): RenderMode {
-  return useSyncExternalStore(getNoop, getSnapshot, getServerSnapshot);
-}
+import { type RefObject, useLayoutEffect, useRef, useState } from "react";
 
 export function useShadowRoot(
   init: ShadowRootInit,
