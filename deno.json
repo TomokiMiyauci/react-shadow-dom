@@ -27,5 +27,6 @@
       "write": ["./src"],
       "env": true
     }
-  }
+  },
+  "nodeModulesDir": "auto"
 }
