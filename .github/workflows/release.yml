@@ -1,0 +1,93 @@
+name: release
+
+on:
+  push:
+    branches:
+      - beta
+    #   - main
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: read   
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+          cache: true
+      
+      - name: Test
+        run: deno task lint
+
+  test:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: read   
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+          cache: true
+      
+      - name: Test
+        run: deno task test
+
+  release:
+    needs: [lint, test]
+    runs-on: ${{ matrix.os }}
+    permissions:
+      contents: write
+    outputs:
+      new_release: ${{ steps.semantic.outputs.new_release_published }}
+      version: ${{ steps.semantic.outputs.new_release_version }}
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+
+    steps:
+      - name: Generate Token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ secrets.BOT_APP_ID }}
+          private-key: ${{ secrets.BOT_PRIVATE_KEY }}
+
+      - name: Checkout
+        uses: actions/checkout@v5
+        with:
+         fetch-depth: 0
+         persist-credentials: false
+
+      - uses: cycjimmy/semantic-release-action@v5
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ steps.app-token.outputs.token }}
+
+  publish:
+    needs: [release]
+    if: ${{ needs.release.outputs.new_release == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: vx.x.x
+
+      - name: publish
+        run: deno publish --set-version=${{ needs.release.outputs.version }}
