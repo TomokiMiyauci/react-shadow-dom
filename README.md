@@ -9,9 +9,9 @@
   Newly available across major browsers (Baseline since 2024)
 </p>
 
-A utility for the
-[Shadow DOM](https://developer.mozilla.org/docs/Web/API/Web_components/Using_shadow_DOM)
-in React
+> A utility for the
+> [Shadow DOM](https://developer.mozilla.org/docs/Web/API/Web_components/Using_shadow_DOM)
+> in React
 
 ## Background
 
@@ -39,8 +39,19 @@ npx jsr add @miyauci/react-shadow-dom
 
 ## Usage
 
-`Template` is a wrapper for representing
-`<template shadowrootmode="open|close">` in React.
+This library provides two main components: `Template` and `ShadowRoot`.
+
+### Template
+
+Provides a method for implementing
+[Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom) in
+React.
+
+The `Template` is `<template>`. However, it adjusts Shadow DOM hydration.
+
+When `shadowRootMode` is specified, the browser automatically attaches the
+[ShadowRoot](https://developer.mozilla.org/docs/Glossary/Shadow_tree). The
+`Template` adjusts the VDOM on the client side to prevent hydration errors.
 
 ```tsx
 import { Template } from "@miyauci/react-shadow-dom";
@@ -57,9 +68,6 @@ import { Template } from "@miyauci/react-shadow-dom";
   Label
 </div>;
 ```
-
-Avoids hydration errors and can be used with any rendering method (SSR, CSR,
-RSC, Hydration).
 
 ## License
 
