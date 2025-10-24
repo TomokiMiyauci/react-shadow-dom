@@ -21,11 +21,12 @@
   },
   "tasks": {
     "lint": {
-      "dependencies": ["lint:eslint", "lint:doc", "lint:deno"]
+      "dependencies": ["lint:eslint", "lint:doc", "lint:deno", "lint:fmt"]
     },
     "lint:eslint": "eslint",
     "lint:doc": "deno doc --lint src/*.ts src/*.tsx",
     "lint:deno": "deno lint",
+    "lint:fmt": "deno fmt --check",
     "test": "deno test -P=test",
     "test:coverage": "deno test -P=test --coverage",
     "build": "babel src --out-dir dist --extensions .tsx,.ts"
@@ -42,5 +43,8 @@
     "exclude": [
       "!dist"
     ]
+  },
+  "fmt": {
+    "exclude": ["CHANGELOG.md"]
   }
 }
