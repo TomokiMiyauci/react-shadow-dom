@@ -3,20 +3,48 @@ import type { JSX } from "react";
 import ShadowRoot from "./ShadowRoot.tsx";
 import { boolish } from "./utils.ts";
 
-export interface TemplateProps extends HTMLTemplateElementProps {
+/**
+ * Props for {@link Template} component.
+ */
+export interface TemplateProps {
   /**
+   * Creates a [shadow root](https://developer.mozilla.org/en-US/docs/Glossary/Shadow_tree) for the parent element. It is a declarative version of the [`Element.attachShadow()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow) method and accepts the same enumerated values.
+   *
+   * - `open` Exposes the internal shadow root DOM for JavaScript (recommended for most use cases).
+   * - `closed` Hides the internal shadow root DOM from JavaScript.
+   */
+  shadowRootMode?: "open" | "closed";
+
+  /**
+   * Sets the value of the [clonable](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/clonable) property of a [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) created using this element to `true`.
+   * If set, a clone of the shadow host (the parent element of this `<template>`) created with [`Node.cloneNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode) or [`Document.importNode()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/importNode) will include a shadow root in the copy.
+   */
+  shadowRootClonable?: boolean;
+
+  /**
+   * Sets the value of the [delegatesFocus](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/delegatesFocus) property of a [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) created using this element to `true`.
+   * If this is set and a non-focusable element in the shadow tree is selected, then focus is delegated to the first focusable element in the tree.
+   */
+  shadowRootDelegatesFocus?: boolean;
+
+  /**
+   * Sets the value of the [serializable](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/serializable) property of a [ShadowRoot](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot) created using this element to `true`.
+   * If set, the shadow root may be serialized by calling the [`Element.getHTML()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getHTML) or [`ShadowRoot.getHTML()`](https://developer.mozilla.org/en-US/docs/Web/API/ShadowRoot/getHTML) methods with the `options.serializableShadowRoots` parameter set `true`.
+   */
+  shadowRootSerializable?: boolean;
+
+  /**
+   * Whether it is server-side rendering or not.
+   * Normally, you do not need to specify this.
+   *
    * @default !("window" in globalThis)
    */
   ssr?: boolean;
 }
 
-export interface HTMLTemplateElementProps {
-  shadowRootMode?: "open" | "closed";
-  shadowRootClonable?: boolean;
-  shadowRootDelegatesFocus?: boolean;
-  shadowRootSerializable?: boolean;
-}
-
+/**
+ * HTML `template` wrapper. It's almost the same as the `template`, but avoids hydration errors.
+ */
 export default function Template(
   props: TemplateProps & JSX.IntrinsicElements["template"],
 ): JSX.Element {
