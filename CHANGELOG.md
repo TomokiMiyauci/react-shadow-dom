@@ -1,3 +1,10 @@
+# [1.0.0-beta.4](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.3...1.0.0-beta.4) (2025-10-24)
+
+
+### Features
+
+* change shadowRootMode field to optional ([bc965f2](https://github.com/TomokiMiyauci/react-shadow-dom/commit/bc965f252c4ea80e409b00ae98ecae804012de64))
+
 # [1.0.0-beta.3](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.2...1.0.0-beta.3) (2025-10-24)
 
 
