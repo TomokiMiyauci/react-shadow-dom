@@ -1,3 +1,6 @@
+/**
+ * Return string boolean.
+ */
 export function boolish(
   value: boolean | undefined,
 ): "true" | "false" | undefined {

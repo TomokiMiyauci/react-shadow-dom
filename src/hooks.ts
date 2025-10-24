@@ -7,6 +7,9 @@ import {
   useState,
 } from "react";
 
+/**
+ * Hook for getting reference to shadow root.
+ */
 export function useShadowRoot(
   init: ShadowRootInit,
 ): [ref: RefObject<Element | null>, root: ShadowRoot | null] {
