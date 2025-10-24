@@ -5,10 +5,12 @@
     "@std/testing": "jsr:@std/testing@^1.0.16"
   },
   "exports": {
-    ".": "./src/mod.ts"
+    ".": "./dist/mod.js"
   },
   "compilerOptions": {
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react",
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
@@ -19,7 +21,8 @@
   },
   "tasks": {
     "lint": "eslint",
-    "test": "deno test -P=test"
+    "test": "deno test -P=test",
+    "build": "babel src --out-dir dist --extensions .tsx,.ts"
   },
   "permissions": {
     "test": {
