@@ -1,3 +1,10 @@
+# [1.0.0-beta.5](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.4...1.0.0-beta.5) (2025-10-24)
+
+
+### Bug Fixes
+
+* change wrapper element to template ([6057f50](https://github.com/TomokiMiyauci/react-shadow-dom/commit/6057f500caaddcf3b5561809fca9040f30d2e0c6))
+
 # [1.0.0-beta.4](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.3...1.0.0-beta.4) (2025-10-24)
 
 
