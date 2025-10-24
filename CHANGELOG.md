@@ -1,3 +1,10 @@
+# [1.0.0-beta.2](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.1...1.0.0-beta.2) (2025-10-24)
+
+
+### Performance Improvements
+
+* optimize shadow dom attach effect ([7dec392](https://github.com/TomokiMiyauci/react-shadow-dom/commit/7dec3929d7295f893e54e5f333b01600745b3a39))
+
 # 1.0.0-beta.1 (2025-10-23)
 
 
