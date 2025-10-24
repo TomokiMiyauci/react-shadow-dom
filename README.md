@@ -21,7 +21,7 @@ Shadow DOM is a powerful web feature.
 work exceptionally well with JSX as templates. Unfortunately, React's Shadow DOM
 support is limited.
 
-This project provides utilities for working with Shadow DOM in React.
+This project provides utilities for working with shadow DOM in React.
 
 ## Install
 
@@ -39,19 +39,21 @@ npx jsr add @miyauci/react-shadow-dom
 
 ## Usage
 
-This library provides two main components: `Template` and `ShadowRoot`.
+This library provides two main components: [Template](#template) and
+[ShadowRoot](#shadowroot).
 
 ### Template
 
 Provides a method for implementing
-[Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom) in
-React.
+[Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom) (DSD)
+in React.
 
-The `Template` is `<template>`. However, it adjusts Shadow DOM hydration.
+This is `<template>`. However, it adjusts shadow DOM hydration.
 
 When `shadowRootMode` is specified, the browser automatically attaches the
-[ShadowRoot](https://developer.mozilla.org/docs/Glossary/Shadow_tree). The
-`Template` adjusts the VDOM on the client side to prevent hydration errors.
+[`ShadowRoot`](https://developer.mozilla.org/docs/Glossary/Shadow_tree). The
+[Template](#template) adjusts the VDOM on the client side to prevent hydration
+errors.
 
 ```tsx
 import { Template } from "@miyauci/react-shadow-dom";
@@ -68,6 +70,39 @@ import { Template } from "@miyauci/react-shadow-dom";
   Label
 </div>;
 ```
+
+### ShadowRoot
+
+This is a container attached as a shadow root on the client side. In other
+words, using the `ShadowRoot` as a boundary, render `children` into the parent
+element's shadow root.
+
+```tsx
+import { ShadowRoot } from "@miyauci/react-shadow-dom";
+
+<div>
+  <ShadowRoot mode="open">
+    <button>
+      <slot name="icon" />
+      <slot />
+    </button>
+  </ShadowRoot>
+
+  <span slot="icon" className="my-icon" />
+  Label
+</div>;
+```
+
+### Difference
+
+[Template](#template) implements DSD. [ShadowRoot](#shadowroot) implements a
+client-side-only shadow root.
+
+Note that DSD is newly available across major browsers (baseline since 2024).
+
+## API
+
+See [deno docs](https://jsr.io/@miyauci/react-shadow-dom)
 
 ## License
 
