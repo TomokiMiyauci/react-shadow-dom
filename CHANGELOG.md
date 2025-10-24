@@ -1,3 +1,10 @@
+# [1.0.0-beta.6](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.5...1.0.0-beta.6) (2025-10-24)
+
+
+### Features
+
+* export shadow root component ([0d60383](https://github.com/TomokiMiyauci/react-shadow-dom/commit/0d603833af3ac54b316e80e5a99281c6da346ef8))
+
 # [1.0.0-beta.5](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.4...1.0.0-beta.5) (2025-10-24)
 
 
