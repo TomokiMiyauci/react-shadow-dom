@@ -34,14 +34,14 @@ export default function ShadowRoot(props: ShadowRootProps): JSX.Element {
     slotAssignment,
     customElementRegistry,
   });
-  const callbackRef = useCallback((el: HTMLDivElement | null) => {
+  const callbackRef = useCallback((el: HTMLTemplateElement | null) => {
     if (el) ref.current = el.parentElement;
   }, [ref]);
 
   return (
     // TODO(miyauci): Refactor to using Fragment ref
-    <div ref={callbackRef}>
+    <template ref={callbackRef}>
       {shadowRoot && createPortal(children, shadowRoot)}
-    </div>
+    </template>
   );
 }

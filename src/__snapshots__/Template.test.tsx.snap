@@ -2,8 +2,8 @@ export const snapshot = {};
 
 snapshot[`Template > ssr > snapshot > default 1`] = `"<template></template>"`;
 
-snapshot[`Template > ssr > snapshot > with mode 1`] = `'<template shadowrootmode="open"></template><div></div>'`;
+snapshot[`Template > ssr > snapshot > with mode 1`] = `'<template shadowrootmode="open"></template><template></template>'`;
 
-snapshot[`Template > ssr > snapshot > with children 1`] = `'<template shadowrootmode="open"><slot></slot></template><div></div>'`;
+snapshot[`Template > ssr > snapshot > with children 1`] = `'<template shadowrootmode="open"><slot></slot></template><template></template>'`;
 
-snapshot[`Template > ssr > snapshot > with full props 1`] = `'<template shadowrootmode="open" shadowrootclonable="true" shadowrootdelegatesfocus="true" shadowrootserializable="true"><slot></slot></template><div></div>'`;
+snapshot[`Template > ssr > snapshot > with full props 1`] = `'<template shadowrootmode="open" shadowrootclonable="true" shadowrootdelegatesfocus="true" shadowrootserializable="true"><slot></slot></template><template></template>'`;
