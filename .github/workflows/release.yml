@@ -41,8 +41,30 @@ jobs:
       - name: Test
         run: deno task test
 
+  build:
+    runs-on: ubuntu-latest
+    permissions: 
+      contents: read   
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+          cache: true
+      
+      - name: Build
+        run: deno task build
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist
+          if-no-files-found: error
+
   release:
-    needs: [lint, test]
+    needs: [lint, test, build]
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -76,5 +98,9 @@ jobs:
         with:
           deno-version: vx.x.x
 
+      - uses: actions/download-artifact@v5
+        with:
+          name: dist
+          
       - name: publish
-        run: deno publish --set-version=${{ needs.release.outputs.version }}
+        run: deno publish --set-version=${{ needs.release.outputs.version }} --allow-dirty
