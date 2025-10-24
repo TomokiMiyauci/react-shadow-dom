@@ -31,5 +31,10 @@
       "env": true
     }
   },
-  "nodeModulesDir": "auto"
+  "nodeModulesDir": "auto",
+  "publish": {
+    "exclude": [
+      "!dist"
+    ]
+  }
 }
