@@ -35,13 +35,13 @@ jobs:
 
       - uses: denoland/setup-deno@v2
         with:
-          deno-version: v2.x
+          deno-version: v2.2.12
           cache: true
       
       - name: Test
         run: |
           deno task test:coverage
-          deno coverage --lcov > coverage.lcov
+          deno coverage --lcov --output=coverage.lcov
 
       - name: upload coverage
         uses: codecov/codecov-action@v5
