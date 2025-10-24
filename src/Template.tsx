@@ -56,6 +56,12 @@ export interface TemplateProps {
  *
  * <div>
  *   <Template shadowRootMode="open">
+ *    <style>
+ *     {`* {
+ *    color: gray;
+ *   }
+ * `}
+ *    </style>
  *     <button>
  *       <slot name="icon" />
  *       <slot />

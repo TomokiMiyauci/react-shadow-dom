@@ -76,6 +76,12 @@ import { Template } from "@miyauci/react-shadow-dom";
 
 <div>
   <Template shadowRootMode="open">
+    <style>
+      {`* {
+  color: gray;
+}
+`}
+    </style>
     <button>
       <slot name="icon" />
       <slot />
@@ -98,6 +104,12 @@ import { ShadowRoot } from "@miyauci/react-shadow-dom";
 
 <div>
   <ShadowRoot mode="open">
+    <style>
+      {`* {
+  color: gray;
+}
+`}
+    </style>
     <button>
       <slot name="icon" />
       <slot />
