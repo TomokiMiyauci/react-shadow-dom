@@ -9,9 +9,9 @@ describe("useShadowRoot", () => {
     const div = document.createElement("div");
 
     const { result: { current: shadowRoot } } = renderHook(() => {
-      const [ref, shadowRoot] = useShadowRoot({ mode: "open" });
-
-      ref.current = div;
+      const shadowRoot = useShadowRoot({ current: div }, {
+        mode: "open",
+      });
 
       return shadowRoot;
     });
@@ -25,9 +25,7 @@ describe("useShadowRoot", () => {
     const attached = div.attachShadow({ mode: "open" });
 
     const { result: { current: shadowRoot } } = renderHook(() => {
-      const [ref, shadowRoot] = useShadowRoot({ mode: "open" });
-
-      ref.current = div;
+      const shadowRoot = useShadowRoot({ current: div }, { mode: "open" });
 
       return shadowRoot;
     });
@@ -43,9 +41,7 @@ describe("useShadowRoot", () => {
     expect(attached.hasChildNodes()).toBeTruthy();
 
     renderHook(() => {
-      const [ref, shadowRoot] = useShadowRoot({ mode: "open" });
-
-      ref.current = div;
+      const shadowRoot = useShadowRoot({ current: div }, { mode: "open" });
 
       return shadowRoot;
     });
@@ -54,12 +50,10 @@ describe("useShadowRoot", () => {
   });
 
   it("should return null if the ref is null", () => {
-    const { result: { current } } = renderHook(() => {
-      return useShadowRoot({ mode: "open" });
+    const { result: { current: shadowRoot } } = renderHook(() => {
+      return useShadowRoot({ current: null }, { mode: "open" });
     });
 
-    const [ref, shadowRoot] = current;
-    expect(ref.current).toBeNull();
     expect(shadowRoot).toBeNull();
   });
 

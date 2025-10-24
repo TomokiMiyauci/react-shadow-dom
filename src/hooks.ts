@@ -3,7 +3,6 @@ import {
   type RefObject,
   useEffectEvent,
   useLayoutEffect,
-  useRef,
   useState,
 } from "react";
 
@@ -11,10 +10,10 @@ import {
  * Hook for getting reference to shadow root.
  */
 export function useShadowRoot(
+  ref: RefObject<Element | null>,
   init: ShadowRootInit,
-): [ref: RefObject<Element | null>, root: ShadowRoot | null] {
+): ShadowRoot | null {
   const [shadowRoot, setState] = useState<ShadowRoot | null>(null);
-  const ref = useRef<Element>(null);
 
   // Shadow DOM can only be created once.
   const attchShadow = useEffectEvent((el: Element) => {
@@ -33,5 +32,5 @@ export function useShadowRoot(
     }
   }, []);
 
-  return [ref, shadowRoot];
+  return shadowRoot;
 }

@@ -1,6 +1,6 @@
 "use client";
 import { createPortal } from "react-dom";
-import { type JSX, type ReactNode, useCallback } from "react";
+import { type JSX, type ReactNode, useCallback, useRef } from "react";
 import { useShadowRoot } from "./hooks.ts";
 
 /**
@@ -26,7 +26,8 @@ export default function ShadowRoot(props: ShadowRootProps): JSX.Element {
     slotAssignment,
     customElementRegistry,
   } = props;
-  const [ref, shadowRoot] = useShadowRoot({
+  const ref = useRef<Element>(null);
+  const shadowRoot = useShadowRoot(ref, {
     mode,
     clonable,
     delegatesFocus,
@@ -34,6 +35,7 @@ export default function ShadowRoot(props: ShadowRootProps): JSX.Element {
     slotAssignment,
     customElementRegistry,
   });
+
   const callbackRef = useCallback((el: HTMLTemplateElement | null) => {
     if (el) ref.current = el.parentElement;
   }, [ref]);
