@@ -1,3 +1,10 @@
+# [1.0.0-beta.3](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.2...1.0.0-beta.3) (2025-10-24)
+
+
+### Bug Fixes
+
+* fix workflow error, re-deploy ([076bf2a](https://github.com/TomokiMiyauci/react-shadow-dom/commit/076bf2a636963d0219a595b91e48be418ba489bd))
+
 # [1.0.0-beta.2](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.1...1.0.0-beta.2) (2025-10-24)
 
 
