@@ -20,7 +20,12 @@
     "lib": ["dom", "es2024", "deno.ns"]
   },
   "tasks": {
-    "lint": "eslint",
+    "lint": {
+      "dependencies": ["lint:eslint", "lint:doc", "lint:deno"]
+    },
+    "lint:eslint": "eslint",
+    "lint:doc": "deno doc --lint src/*.ts src/*.tsx",
+    "lint:deno": "deno lint",
     "test": "deno test -P=test",
     "build": "babel src --out-dir dist --extensions .tsx,.ts"
   },
