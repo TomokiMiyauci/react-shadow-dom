@@ -43,7 +43,29 @@ export interface TemplateProps {
 }
 
 /**
- * HTML `template` wrapper. It's almost the same as the `template`, but avoids hydration errors.
+ * HTML `template` wrapper. It adjusts shadow DOM hydration.
+ *
+ * When {@link TemplateProps.shadowRootMode shadowRootMode} is specified, the browser automatically attaches the
+ * [`ShadowRoot`](https://developer.mozilla.org/docs/Glossary/Shadow_tree). The
+ * {@link Template} adjusts the VDOM on the client side to prevent hydration
+ * errors.
+ *
+ * @example
+ * ```tsx
+ * import { Template } from "@miyauci/react-shadow-dom";
+ *
+ * <div>
+ *   <Template shadowRootMode="open">
+ *     <button>
+ *       <slot name="icon" />
+ *       <slot />
+ *     </button>
+ *   </Template>
+ *
+ *   <span slot="icon" className="my-icon" />
+ *   Label
+ * </div>;
+ * ```
  */
 export default function Template(
   props: TemplateProps & JSX.IntrinsicElements["template"],

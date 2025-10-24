@@ -14,7 +14,26 @@ export interface ShadowRootProps extends ShadowRootInit {
 }
 
 /**
- * Attach a [shadow root](https://developer.mozilla.org/en-US/docs/Glossary/Shadow_tree) to the parent.
+ * Container attached as a shadow root on the client side.
+ * Using the {@link ShadowRoot} as a boundary, render {@link ShadowRootProps.children children} into the parent
+ * element's shadow root.
+ *
+ * @example
+ * ```tsx
+ * import { ShadowRoot } from "@miyauci/react-shadow-dom";
+ *
+ * <div>
+ *   <ShadowRoot mode="open">
+ *     <button>
+ *       <slot name="icon" />
+ *       <slot />
+ *     </button>
+ *   </ShadowRoot>
+ *
+ *   <span slot="icon" className="my-icon" />
+ *   Label
+ * </div>;
+ * ```
  */
 export default function ShadowRoot(props: ShadowRootProps): JSX.Element {
   const {

@@ -75,8 +75,8 @@ import { Template } from "@miyauci/react-shadow-dom";
 ### ShadowRoot
 
 This is a container attached as a shadow root on the client side. In other
-words, using the `ShadowRoot` as a boundary, render `children` into the parent
-element's shadow root.
+words, using the [ShadowRoot](#shadowroot) as a boundary, render `children` into
+the parent element's shadow root.
 
 ```tsx
 import { ShadowRoot } from "@miyauci/react-shadow-dom";
