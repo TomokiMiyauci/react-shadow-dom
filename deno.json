@@ -27,6 +27,7 @@
     "lint:doc": "deno doc --lint src/*.ts src/*.tsx",
     "lint:deno": "deno lint",
     "test": "deno test -P=test",
+    "test:coverage": "deno test -P=test --coverage",
     "build": "babel src --out-dir dist --extensions .tsx,.ts"
   },
   "permissions": {
