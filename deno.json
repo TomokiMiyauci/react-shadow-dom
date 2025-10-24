@@ -17,7 +17,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "lib": ["dom", "es2024", "deno.ns"]
+    "lib": ["dom", "deno.window", "esnext", "deno.ns"]
   },
   "tasks": {
     "lint": {
@@ -27,7 +27,7 @@
     "lint:doc": "deno doc --lint src/*.ts src/*.tsx",
     "lint:deno": "deno lint",
     "test": "deno test -P=test",
-    "test:coverage": "deno test -P=test --coverage",
+    "test:coverage": "deno test --allow-env --allow-read --coverage --no-check",
     "build": "babel src --out-dir dist --extensions .tsx,.ts"
   },
   "permissions": {
