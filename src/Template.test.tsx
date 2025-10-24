@@ -13,6 +13,13 @@ describe("Template", () => {
       it("default", async (t) => {
         await assertSnapshot(
           t,
+          renderToStaticMarkup(<Template />),
+        );
+      });
+
+      it("with mode", async (t) => {
+        await assertSnapshot(
+          t,
           renderToStaticMarkup(<Template shadowRootMode="open" />),
         );
       });
@@ -53,6 +60,16 @@ describe("Template", () => {
 
     after<{ cleanup: VoidFunction }>(function () {
       this.cleanup();
+    });
+
+    it("do nothing if mode is not specified", () => {
+      const result = render(
+        <Template>
+          <slot />
+        </Template>,
+      );
+
+      expect(result.container.shadowRoot).toBeNull();
     });
 
     it("should attach shadow root", () => {

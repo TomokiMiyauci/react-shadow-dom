@@ -11,7 +11,7 @@ export interface TemplateProps extends HTMLTemplateElementProps {
 }
 
 export interface HTMLTemplateElementProps {
-  shadowRootMode: "open" | "closed";
+  shadowRootMode?: "open" | "closed";
   shadowRootClonable?: boolean;
   shadowRootDelegatesFocus?: boolean;
   shadowRootSerializable?: boolean;
@@ -36,19 +36,23 @@ export default function Template(
     shadowrootserializable: boolish(serializable),
   };
   const { children } = templateProps;
+  // If mode is not specified, it is always true. If mode is specified, it is true for ssr.
+  const isRender = !mode || ssr;
 
   return (
     <>
-      {ssr && <template {...templateProps} />}
+      {isRender && <template {...templateProps} />}
 
-      <ShadowRoot
-        mode={mode}
-        clonable={clonable}
-        delegatesFocus={delegatesFocus}
-        serializable={serializable}
-      >
-        {children}
-      </ShadowRoot>
+      {mode && (
+        <ShadowRoot
+          mode={mode}
+          clonable={clonable}
+          delegatesFocus={delegatesFocus}
+          serializable={serializable}
+        >
+          {children}
+        </ShadowRoot>
+      )}
     </>
   );
 }
