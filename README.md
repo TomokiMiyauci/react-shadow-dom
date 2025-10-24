@@ -2,6 +2,8 @@
 
 [![JSR](https://jsr.io/badges/@miyauci/react-shadow-dom)](https://jsr.io/@miyauci/react-shadow-dom)
 [![codecov](https://codecov.io/gh/TomokiMiyauci/react-shadow-dom/graph/badge.svg?token=UDU4J875ZS)](https://codecov.io/gh/TomokiMiyauci/react-shadow-dom)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
+![GitHub License](https://img.shields.io/github/license/TomokiMiyauci/react-shadow-dom)
 
 <p>
   <a href="https://web-platform-dx.github.io/web-features/supported-browsers/?targetYear=2024">
@@ -13,6 +15,19 @@
 > A utility for the
 > [Shadow DOM](https://developer.mozilla.org/docs/Web/API/Web_components/Using_shadow_DOM)
 > in React
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+  - [Template](#template)
+  - [ShadowRoot](#shadowroot)
+  - [Difference](#difference)
+- [API](#api)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Background
 
