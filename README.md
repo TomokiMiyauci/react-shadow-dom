@@ -2,8 +2,10 @@
 
 [![JSR](https://jsr.io/badges/@miyauci/react-shadow-dom)](https://jsr.io/@miyauci/react-shadow-dom)
 
+<p>
 <img alt="baseline" src="https://web-platform-dx.github.io/web-features/assets/img/baseline-newly-icon.svg" height="16px" />
 Newly available across major browsers (Baseline since 2024)
+</p>
 
 A utility for the
 [Shadow DOM](https://developer.mozilla.org/docs/Web/API/Web_components/Using_shadow_DOM)
