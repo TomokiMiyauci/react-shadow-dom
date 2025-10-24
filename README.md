@@ -105,6 +105,10 @@ Note that DSD is newly available across major browsers (baseline since 2024).
 
 See [deno docs](https://jsr.io/@miyauci/react-shadow-dom)
 
+## Contributing
+
+See [CONTRIBUTING](./CONTRIBUTING.md)
+
 ## License
 
 [MIT](./LICENSE) © Tomoki Miyauchi
