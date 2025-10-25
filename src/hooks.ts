@@ -30,7 +30,7 @@ export function useShadowRoot(
       const root = attchShadow(ref.current);
       setState(root);
     }
-  }, []);
+  }, [ref]);
 
   return shadowRoot;
 }
