@@ -1,4 +1,3 @@
-"use client";
 import type { JSX } from "react";
 import ShadowRoot from "./ShadowRoot.tsx";
 import { boolish } from "./utils.ts";
