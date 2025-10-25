@@ -1,3 +1,10 @@
+# [1.0.0-beta.7](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.6...1.0.0-beta.7) (2025-10-25)
+
+
+### Bug Fixes
+
+* remove unnessesary client directive ([f6b9546](https://github.com/TomokiMiyauci/react-shadow-dom/commit/f6b9546d4e92a44618c19cf8df2b0a7f9f97541a))
+
 # [1.0.0-beta.6](https://github.com/TomokiMiyauci/react-shadow-dom/compare/1.0.0-beta.5...1.0.0-beta.6) (2025-10-24)
 
 
