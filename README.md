@@ -16,6 +16,10 @@
 > [Shadow DOM](https://developer.mozilla.org/docs/Web/API/Web_components/Using_shadow_DOM)
 > in React
 
+> [!CAUTION]
+> Development has been suspended due to the discovery of a
+> [critical issue](https://github.com/TomokiMiyauci/react-shadow-dom/issues/2).
+
 ## Table of Contents
 
 - [Table of Contents](#table-of-contents)
