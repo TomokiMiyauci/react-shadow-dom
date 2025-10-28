@@ -130,7 +130,8 @@ import { ShadowRoot } from "@miyauci/react-shadow-dom";
 [Template](#template) implements DSD. [ShadowRoot](#shadowroot) implements a
 client-side-only shadow root.
 
-Note that DSD is newly available across major browsers (baseline since 2024).
+> [!NOTE]
+> Note that DSD is newly available across major browsers (baseline since 2024).
 
 ## API
 
