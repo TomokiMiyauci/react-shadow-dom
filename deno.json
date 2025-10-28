@@ -1,19 +1,50 @@
 {
+  "name": "@miyauci/react-shadow-dom",
   "imports": {
     "@std/expect": "jsr:@std/expect@^1.0.17",
     "@std/testing": "jsr:@std/testing@^1.0.16"
   },
+  "exports": {
+    ".": "./dist/mod.js"
+  },
   "compilerOptions": {
     "jsx": "react-jsx",
+    "jsxImportSource": "react",
+    "jsxImportSourceTypes": "@types/react",
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "lib": ["dom", "es2024", "deno.ns"]
+    "lib": ["dom", "deno.window"]
   },
   "tasks": {
-    "lint": "eslint"
+    "lint": {
+      "dependencies": ["lint:eslint", "lint:doc", "lint:deno", "lint:fmt"]
+    },
+    "lint:eslint": "eslint",
+    "lint:doc": "deno doc --lint src/*.ts src/*.tsx",
+    "lint:deno": "deno lint",
+    "lint:fmt": "deno fmt --check",
+    "test": "deno test -P=test",
+    "test:coverage": "deno test -P=test --coverage",
+    "build": "babel src --out-dir dist --extensions .tsx,.ts"
+  },
+  "permissions": {
+    "test": {
+      "read": true,
+      "write": ["./src"],
+      "env": true
+    }
+  },
+  "nodeModulesDir": "auto",
+  "publish": {
+    "exclude": [
+      "!dist"
+    ]
+  },
+  "fmt": {
+    "exclude": ["CHANGELOG.md"]
   }
 }

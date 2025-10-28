@@ -1,8 +1,37 @@
 # react-shadow-dom
 
-A utility for the
-[Shadow DOM](https://developer.mozilla.org/docs/Web/API/Web_components/Using_shadow_DOM)
-in React
+[![JSR](https://jsr.io/badges/@miyauci/react-shadow-dom)](https://jsr.io/@miyauci/react-shadow-dom)
+[![codecov](https://codecov.io/gh/TomokiMiyauci/react-shadow-dom/graph/badge.svg?token=UDU4J875ZS)](https://codecov.io/gh/TomokiMiyauci/react-shadow-dom)
+[![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg)](https://github.com/RichardLitt/standard-readme)
+![GitHub License](https://img.shields.io/github/license/TomokiMiyauci/react-shadow-dom)
+
+<p>
+  <a href="https://web-platform-dx.github.io/web-features/supported-browsers/?targetYear=2024">
+  <img alt="baseline" src="https://web-platform-dx.github.io/web-features/assets/img/baseline-newly-icon.svg" height="16px" />
+  </a>
+  Newly available across major browsers (Baseline since 2024)
+</p>
+
+> A utility for the
+> [Shadow DOM](https://developer.mozilla.org/docs/Web/API/Web_components/Using_shadow_DOM)
+> in React
+
+> [!CAUTION]
+> Development has been suspended due to the discovery of a
+> [critical issue](https://github.com/TomokiMiyauci/react-shadow-dom/issues/2).
+
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+- [Background](#background)
+- [Install](#install)
+- [Usage](#usage)
+  - [Template](#template)
+  - [ShadowRoot](#shadowroot)
+  - [Difference](#difference)
+- [API](#api)
+- [Contributing](#contributing)
+- [License](#license)
 
 ## Background
 
@@ -12,7 +41,7 @@ Shadow DOM is a powerful web feature.
 work exceptionally well with JSX as templates. Unfortunately, React's Shadow DOM
 support is limited.
 
-This project provides utilities for working with Shadow DOM in React.
+This project provides utilities for working with shadow DOM in React.
 
 ## Install
 
@@ -30,14 +59,33 @@ npx jsr add @miyauci/react-shadow-dom
 
 ## Usage
 
-`Template` is a wrapper for representing
-`<template shadowrootmode="open|close">` in React.
+This library provides two main components: [Template](#template) and
+[ShadowRoot](#shadowroot).
+
+### Template
+
+Provides a method for implementing
+[Declarative Shadow DOM](https://web.dev/articles/declarative-shadow-dom) (DSD)
+in React.
+
+This is `<template>`. However, it adjusts shadow DOM hydration.
+
+When `shadowRootMode` is specified, the browser automatically attaches the
+[`ShadowRoot`](https://developer.mozilla.org/docs/Glossary/Shadow_tree). The
+[Template](#template) adjusts the VDOM on the client side to prevent hydration
+errors.
 
 ```tsx
 import { Template } from "@miyauci/react-shadow-dom";
 
 <div>
   <Template shadowRootMode="open">
+    <style>
+      {`* {
+  color: gray;
+}
+`}
+    </style>
     <button>
       <slot name="icon" />
       <slot />
@@ -49,8 +97,49 @@ import { Template } from "@miyauci/react-shadow-dom";
 </div>;
 ```
 
-Avoids hydration errors and can be used with any rendering method (SSR, CSR,
-RSC, Hydration).
+### ShadowRoot
+
+This is a container attached as a shadow root on the client side. In other
+words, using the [ShadowRoot](#shadowroot) as a boundary, render `children` into
+the parent element's shadow root.
+
+```tsx
+import { ShadowRoot } from "@miyauci/react-shadow-dom";
+
+<div>
+  <ShadowRoot mode="open">
+    <style>
+      {`* {
+  color: gray;
+}
+`}
+    </style>
+    <button>
+      <slot name="icon" />
+      <slot />
+    </button>
+  </ShadowRoot>
+
+  <span slot="icon" className="my-icon" />
+  Label
+</div>;
+```
+
+### Difference
+
+[Template](#template) implements DSD. [ShadowRoot](#shadowroot) implements a
+client-side-only shadow root.
+
+> [!NOTE]
+> Note that DSD is newly available across major browsers (baseline since 2024).
+
+## API
+
+See [deno docs](https://jsr.io/@miyauci/react-shadow-dom)
+
+## Contributing
+
+See [CONTRIBUTING](./CONTRIBUTING.md)
 
 ## License
 

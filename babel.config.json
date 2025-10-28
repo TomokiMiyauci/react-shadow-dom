@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["@babel/preset-react", { "runtime": "automatic" }],
+    ["@babel/preset-typescript", { "rewriteImportExtensions": true }]
+  ],
+  "plugins": [
+    ["./tools/babel_plugin_dts.js"]
+  ],
+  "sourceMaps": true,
+  "ignore": ["**/*.test.ts", "**/*.test.tsx"]
+}

@@ -1,0 +1,10 @@
+coverage:
+  status:
+    project:
+      default:
+        target: 100%
+        if_ci_failed: error
+
+comment:
+  layout: " diff, flags, files"
+  behavior: default
